@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h1>Bots</h1>
+{% if msg %}<div class='flash'>{{ msg }}</div>{% endif %}
+<table>
+  <tr>
+    <th>ID</th><th>Owner</th><th>Bot</th><th>Turi</th><th>Status</th><th>Plan</th><th>Server</th><th>PID</th><th>Tugash</th><th>Action</th>
+  </tr>
+  {% for b in bots %}
+  <tr>
+    <td>{{ b[0] }}</td>
+    <td>{{ b[1] }}{% if b[2] %}<div class='muted'>@{{ b[2] }}</div>{% endif %}</td>
+    <td>@{{ b[3] or '' }}</td>
+    <td>{{ b[4] }}</td>
+    <td>
+      {% if b[11] %}
+        <span class='bad'>Bloklangan</span>
+      {% elif b[5] %}
+        <span class='ok'>Aktiv</span>
+      {% else %}
+        <span class='warn'>To'xtagan</span>
+      {% endif %}
+    </td>
+    <td>{{ b[8] or '' }}</td>
+    <td>{{ b[10] or 'main' }}</td>
+    <td>{{ b[12] or '—' }}</td>
+    <td>{{ b[7] or '' }}</td>
+    <td>
+      <div class='row'>
+        {% if b[11] %}
+          <form method='post' action='/bots/{{ b[0] }}/unblock'><button type='submit'>Unblock</button></form>
+        {% else %}
+          {% if b[5] %}
+            <form method='post' action='/bots/{{ b[0] }}/stop'><button type='submit' class='warn-btn'>Stop</button></form>
+          {% else %}
+            <form method='post' action='/bots/{{ b[0] }}/start'><button type='submit'>Start</button></form>
+          {% endif %}
+          <form method='post' action='/bots/{{ b[0] }}/block'><button type='submit' class='danger-btn'>Block</button></form>
+        {% endif %}
+      </div>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

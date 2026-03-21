@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h1>Settings</h1>
+{% if saved %}<div class='flash'>{{ saved }}</div>{% endif %}
+<div class='grid2'>
+  <div class='card'>
+    <h3>Asosiy sozlamalar</h3>
+    <form method='post' action='/settings/save'>
+      <div class='row'><input name='trial_days' value='{{ settings.trial_days }}' placeholder='Trial days' required></div>
+      <div class='row' style='margin-top:10px'><input name='kino_paid_30' value='{{ settings.kino_paid_30 }}' placeholder='Kino 30 kun narxi' required></div>
+      <div class='row' style='margin-top:10px'><input name='media_paid_30' value='{{ settings.media_paid_30 }}' placeholder='Media 30 kun narxi' required></div>
+      <div class='row' style='margin-top:10px'><input name='shop_paid_30' value='{{ settings.shop_paid_30 }}' placeholder='Shop 30 kun narxi' required></div>
+      <div class='row' style='margin-top:10px'><input name='referral_bonus' value='{{ settings.referral_bonus }}' placeholder='Referral bonus' required></div>
+      <div class='row' style='margin-top:10px'><input name='payment_card' value='{{ settings.payment_card }}' placeholder='Karta raqami' required></div>
+      <div class='row' style='margin-top:10px'><input name='payment_card_owner' value='{{ settings.payment_card_owner }}' placeholder='Karta egasi' required></div>
+      <div style='margin-top:12px'><button type='submit'>Saqlash</button></div>
+    </form>
+  </div>
+  <div class='card'>
+    <h3>Admin profil</h3>
+    <form method='post' action='/profile/save'>
+      <div class='row'><input name='username' value='{{ web_user }}' placeholder='Login' required></div>
+      <div class='row' style='margin-top:10px'><input name='password' type='password' placeholder='Yangi parol' required></div>
+      <div class='row' style='margin-top:10px'><input name='password2' type='password' placeholder='Parolni qayta kiriting' required></div>
+      <div style='margin-top:12px'><button type='submit'>Profilni yangilash</button></div>
+    </form>
+  </div>
+</div>
+{% endblock %}

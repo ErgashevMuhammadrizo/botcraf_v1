@@ -1,0 +1,14 @@
+BotCraft MVP fix v3
+
+Asosiy tuzatishlar:
+1) Child bot start/stop/block/unblock to'liq ishlaydigan qilindi.
+2) created_bots uchun yangi ustunlar qo'shildi: server_code, is_blocked, stopped_at, blocked_at.
+3) server_nodes va server_waitlist migratsiyalari init_db ichiga qo'shildi.
+4) /bots admin web sahifasiga real action tugmalari qo'shildi.
+5) start/stop/block/unblock route lar qo'shildi.
+6) restart_active_bots endi bloklangan botlarni qayta ishga tushirmaydi.
+7) Server capacity hisoblari dashboard va nodes sahifasida ko'rsatiladi.
+8) Server bo'sh bo'lmasa user waitlist ga tushadi, admin ga xabar boradi.
+9) Yangi bo'sh slot paydo bo'lsa scheduler waitlist userga xabar yuboradi.
+10) requirements.txt ga itsdangerous qo'shildi.
+11) Mening botlarim bo'limida holat va server ko'rinishi yaxshilandi.

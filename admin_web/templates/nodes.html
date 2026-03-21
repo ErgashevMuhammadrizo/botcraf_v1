@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h1>Server / Node lar</h1>
+<div class='card' style='margin-bottom:18px'>
+  <form method='post' action='/nodes/add'>
+    <div class='row'>
+      <input name='code' placeholder='Kod (node-2)' required>
+      <input name='label' placeholder='Nomi' required>
+      <input name='host' placeholder='IP / host' required>
+      <input name='max_bots' type='number' placeholder='Max bots' required value='10'>
+      <button type='submit'>Qo'shish</button>
+    </div>
+  </form>
+</div>
+<table>
+  <tr><th>Kod</th><th>Nomi</th><th>Host</th><th>Band</th><th>Max bot</th><th>Bo'sh joy</th><th>Status</th><th>Action</th></tr>
+  {% for n in nodes %}
+  {% set free = (n[3] or 0) - (n[6] or 0) %}
+  <tr>
+    <td>{{ n[0] }}</td><td>{{ n[1] }}</td><td>{{ n[2] }}</td><td>{{ n[6] }}</td><td>{{ n[3] }}</td><td>{{ free if free > 0 else 0 }}</td>
+    <td>{% if n[4] %}<span class='ok'>Yoqilgan</span>{% else %}<span class='bad'>O'chirilgan</span>{% endif %}</td>
+    <td><form method='post' action='/nodes/toggle/{{ n[0] }}'><button type='submit'>{% if n[4] %}Disable{% else %}Enable{% endif %}</button></form></td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

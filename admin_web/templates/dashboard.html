@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h1>Dashboard</h1>
+<p class='muted'>Asosiy ko'rsatkichlar</p>
+<div class='cards'>
+  <div class='card'><div class='muted'>Userlar</div><div class='big'>{{ stats.users }}</div></div>
+  <div class='card'><div class='muted'>Jami botlar</div><div class='big'>{{ stats.bots }}</div></div>
+  <div class='card'><div class='muted'>Aktiv botlar</div><div class='big'>{{ stats.active_bots }}</div></div>
+  <div class='card'><div class='muted'>Bloklangan botlar</div><div class='big'>{{ stats.blocked_bots }}</div></div>
+  <div class='card'><div class='muted'>Pending to'lov</div><div class='big'>{{ stats.pending_payments }}</div></div>
+  <div class='card'><div class='muted'>Jami balans</div><div class='big'>{{ '{:,}'.format(stats.total_balance) }}</div></div>
+  <div class='card'><div class='muted'>Server sig'imi</div><div class='big'>{{ stats.used_capacity }}/{{ stats.total_capacity }}</div></div>
+  <div class='card'><div class='muted'>Bo'sh joy</div><div class='big'>{{ stats.free_capacity }}</div></div>
+  <div class='card'><div class='muted'>Kutayotgan userlar</div><div class='big'>{{ stats.waiting_users }}</div></div>
+</div>
+<h2 style='margin-top:22px'>Serverlar</h2>
+<table>
+  <tr><th>Kod</th><th>Nomi</th><th>Host</th><th>Band</th><th>Max bot</th><th>Bo'sh joy</th><th>Status</th></tr>
+  {% for n in nodes %}
+  {% set free = (n[3] or 0) - (n[6] or 0) %}
+  <tr>
+    <td>{{ n[0] }}</td><td>{{ n[1] }}</td><td>{{ n[2] }}</td><td>{{ n[6] }}</td><td>{{ n[3] }}</td><td>{{ free if free > 0 else 0 }}</td>
+    <td>{% if n[4] %}<span class='ok'>Yoqilgan</span>{% else %}<span class='bad'>O'chirilgan</span>{% endif %}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

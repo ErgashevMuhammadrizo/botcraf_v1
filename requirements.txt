@@ -1,0 +1,12 @@
+aiogram==3.26.0
+aiosqlite==0.20.0
+python-dotenv==1.0.1
+aiofiles==23.2.1
+yt-dlp==2026.3.13
+asyncpg==0.30.0
+fastapi==0.115.8
+uvicorn==0.34.0
+jinja2==3.1.6
+python-multipart==0.0.20
+itsdangerous==2.2.0
+Pillow==10.3.0
